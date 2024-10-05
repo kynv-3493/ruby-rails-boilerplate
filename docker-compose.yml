@@ -1,0 +1,95 @@
+services:
+  db:
+    image: postgres:16
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - 5438:5432
+    environment:
+      PGDATA: /var/lib/postgresql/data/kynv
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.1
+    volumes:
+      - certs:/usr/share/elasticsearch/config/certs
+      - es-data:/usr/share/elasticsearch/data
+    environment:
+      - node.name=es01
+      - discovery.type=single-node
+      - xpack.security.enabled=true
+      - ELASTIC_PASSWORD=L-VHDzwfdkbjJium*4uh
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - 9202:9200
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.15.1
+    volumes:
+      - certs:/usr/share/kibana/config/certs
+      - kibana-data:/usr/share/kibana/data
+    ports:
+      - 5605:5601
+    environment:
+      - SERVERNAME=kibana
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=L-VHDzwfdkbjJium*4uh
+    mem_limit: 1073741824
+    depends_on:
+      - elasticsearch
+  redis:
+    image: redis:7.2.0
+    ports:
+      - 6385:6379
+  mailcatcher:
+    image: yappabe/mailcatcher
+    ports:
+      - 1028:1025
+      - 1088:1080
+    command: mailcatcher --no-quit --foreground --ip=0.0.0.0
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - EMAIL_SERVICE_PORT=1025
+      - EMAIL_SERVICE_ADDRESS=mailcatcher
+      - LANG=C.UTF-8
+      - REDIS_URL=redis://redis:6379/0
+    tty: true
+    volumes:
+      - .:/railsApp
+      - bundle:/usr/local/bundle
+    ports:
+      - 3000:3000
+      - 3036:3036
+    depends_on:
+      - db
+      - elasticsearch
+      - redis
+      - mailcatcher
+  sidekiq:
+    image: ruby:3.2.2
+    # command: bundle exec sidekiq
+    environment:
+      - EMAIL_SERVICE_PORT=1025
+      - EMAIL_SERVICE_ADDRESS=mailcatcher
+      - LANG=C.UTF-8
+    tty: true
+    volumes:
+      - .:/railsApp
+      - bundle:/usr/local/bundle
+    depends_on:
+      - db
+      - redis
+      - elasticsearch
+      - mailcatcher
+volumes:
+  bundle:
+  certs:
+  kibana-data:
+  db_data:
+  es-data:
+networks:
+  asset-management-networks:
+    driver: bridge

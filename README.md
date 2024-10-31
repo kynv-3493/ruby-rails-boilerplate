@@ -11,5 +11,12 @@
 - Chạy lệnh để tạo database: rails db:create
 - Bật server: rails s
 Truy cập đường dẫn http://localhost:3000/ hiển thị Rails là thành công
-
+```bash
+cp config/database.yml.example config/database.yml
+cp .env.example .env
+rails db:create db:migrate db:seed
+rails s -b 0
+# Or if installed tailwind rails
+bin/dev
+```
 

@@ -18,5 +18,13 @@ rails db:create db:migrate db:seed
 rails s -b 0
 # Or if installed tailwind rails
 bin/dev
+
+# Check coverage
+## Mac
+open coverage/index.html
+
+## Ubuntu
+xdg-open coverage/index.html
 ```
 
+# 3. Các library cần áp dụng

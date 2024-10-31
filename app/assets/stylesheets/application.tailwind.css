@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+
+@layer components {
+  .btn-primary {
+    @apply py-2 px-4 bg-blue-200;
+  }
+}
+
+*/
+/* GLOBAL CLASS */
+@layer components {
+  .primary-button {
+    @apply rounded-lg py-3 px-5 bg-blue-600 inline-block font-medium transition-colors duration-200 hover:bg-blue-700 hover:cursor-pointer text-white hover:text-white;
+  }
+
+  .secondary-button {
+    @apply rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium transition-colors duration-200 hover:bg-gray-200 hover:cursor-pointer;
+  }
+
+  a {
+    @apply text-gray-900 hover:text-sky-600;
+  }
+}
+/* HELPER CLASS */
+
+/* Pagy */
+.pagy.nav {
+  @apply flex justify-end p-4 space-x-2 mr-20;
+}
+
+.pagy.nav > a {
+  @apply block px-4 py-2 text-sm text-blue-600 bg-white border border-gray-300 rounded-md hover:bg-blue-600 hover:text-white transition-colors duration-200;
+}
+
+.pagy.nav > .current {
+  @apply bg-blue-600 text-white border-transparent;
+}
+
+.truncate-paragraph-3-lines {
+  @apply overflow-hidden text-ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Giới hạn hiển thị 3 dòng */
+  -webkit-box-orient: vertical;
+}
+/* END HELPER CLASS */
+
+/* BASE CLASS */
+
+/* FORM */
+@layer components {
+  .form {
+    .title {
+      @apply text-2xl font-semibold text-center text-gray-800 mb-6;
+    }
+
+    .body {
+      @apply max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md flex flex-col gap-4;
+
+      .label {
+        @apply block mb-2 text-sm font-medium text-gray-700;
+      }
+
+      .input-field {
+        @apply block w-full p-2.5 text-gray-900 bg-gray-50 border border-gray-300 rounded-lg;
+
+        &:focus {
+          @apply ring-blue-500 border-blue-500;
+        }
+      }
+
+      .checkbox-container {
+        @apply flex items-start mb-6;
+
+        .checkbox-wrapper {
+          @apply flex items-center h-5;
+
+          .checkbox {
+            @apply h-4 w-4 text-blue-600 border border-gray-300 rounded-sm;
+
+            &:focus {
+              @apply ring-blue-500 border-blue-500;
+            }
+          }
+        }
+
+        .checkbox-label {
+          @apply ml-2 text-sm font-medium text-gray-700;
+        }
+      }
+    }
+  }
+}
+/* TABLE */
+@layer components {
+  .table-container {
+    @apply relative overflow-x-auto shadow-md sm:rounded-lg;
+
+    table {
+      @apply w-full text-sm text-left rtl:text-right dark:text-gray-400;
+
+      thead {
+        @apply text-xs uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400;
+      }
+
+      tbody {
+        tr {
+          @apply odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700;
+        }
+      }
+
+      th,
+      td {
+        @apply px-6 py-4;
+      }
+    }
+  }
+}

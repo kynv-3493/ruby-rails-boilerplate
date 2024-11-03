@@ -49,7 +49,14 @@ gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html]
 # gem "image_processing", "~> 1.2"
+gem "devise", "~> 4.9"
+gem "devise-async", "~> 1.0"
+gem "omniauth", "~> 2.1"
+gem "omniauth-facebook", "~> 10.0"
+gem "omniauth-google-oauth2", "~> 1.2"
+gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem "rails-i18n", "~> 7.0"
+gem "sidekiq", "~> 7.3"
 gem "tailwindcss-rails", "~> 3.0"
 
 group :development, :test do

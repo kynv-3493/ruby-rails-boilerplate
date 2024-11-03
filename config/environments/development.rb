@@ -41,6 +41,36 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  config.action_mailer.default_url_options = {
+    host: ENV["MAILER_HOST"] || "localhost",
+    port: ENV["MAILER_HOST_PORT"] || 3000
+  }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              ENV["EMAIL_SERVICE_ADDRESS"],
+    port:                 ENV["EMAIL_SERVICE_PORT"],
+    host:                 ENV["EMAIL_SERVICE_HOST"],
+    user_name:            ENV["EMAIL_SERVICE_USER_NAME"],
+    password:             ENV["EMAIL_SERVICE_PASSWORD"],
+    authentication:       :plain,
+    enable_starttls_auto: true
+  }
+
+  # config.action_mailer.smtp_settings = {
+  #   host: 'sandbox.smtp.mailtrap.io',
+  #   address: 'sandbox.smtp.mailtrap.io',
+  #   port: '2525',
+  #   authentication: :login,
+  #   user_name: 'ded8b7029b185c',
+  #   password: 'fbac71869e2c35'
+  # }
+
+  # config.action_mailer.smtp_settings = {
+  #   address: ENV["MAILCATCHER_ADDRESS"] || "127.0.0.1",
+  #   port: ENV["MAILCATCHER_PORT"] || 1025
+  # }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

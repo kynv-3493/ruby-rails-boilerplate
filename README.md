@@ -52,3 +52,12 @@ xdg-open coverage/index.html
 env.example
 bỏ 2 cặp xxx ở đầu cuối đi
 ```
+
+# Tài liệu học tập
+
+1. Basic Clone amazon rails - https://github.com/stephant98/Jungle
+2. Clone airbnb - https://www.youtube.com/watch?v=GUL_42lNChY&list=PLoDt3UyLUtch1KR0U_UZ9GXJ5NRe-7BAh&index=11
+
+- Github repo: https://github.com/rt4914/airbnb
+- Học các kiến thức cơ bản
+- Học cách fixbug

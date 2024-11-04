@@ -27,8 +27,10 @@
         </div>
       <% end %>
       <div>
+        <%= render "layouts/header" %>
         <%= yield %>
         <%= debug(params) if Rails.env.development? %>
+        <%= render "layouts/footer" %>
       </div>
     </main>
   </body>

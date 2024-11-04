@@ -1,3 +1,5 @@
 vi:
   dictionary:
-    home: "Trang chủ"
+    web_name: "Rails Web"
+    pages:
+      about: "Giới thiệu"

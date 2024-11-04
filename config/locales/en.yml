@@ -31,4 +31,6 @@
 
 en:
   dictionary:
-    home: "Home page"
+    web_name: "Rails Web"
+    pages:
+      about: "About"

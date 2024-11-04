@@ -1,0 +1,39 @@
+<div id="header-left" class="flex items-center justify-between text-md mb-4">
+  <div>
+    <%= link_to t("dictionary.web_name"), root_path, class: "text-4xl font-bold" %>
+    <%= content_tag(:span, current_user&.name, class: "font-bold text-md") %>
+    <%= content_tag(:span, current_user&.admin.nil? ? "- Employee" : current_user.admin&.is_super ? "- Super Admin" : "- Admin", class: "font-bold text-md") %>
+  </div>
+  <div id="header-right" class="flex gap-2">
+    <div>
+      <%= link_to t("dictionary.pages.about"), "#" %>
+    </div>
+
+    <div class="relative inline-block" data-controller="dropdown">
+      <button class="flex items-center" data-dropdown-target="button" data-action="click->dropdown#toggle">
+        <%= image_tag "icons/#{I18n.locale}.png", class: "", size: (24) %>
+      </button>
+      <div class="hidden absolute min-w-[160px] bg-gray-100 shadow-sm z-10" data-dropdown-target="content">
+        <div class="py-1 px-3 flex gap-1 cursor-pointer hover:bg-sky-100" data-value="option1" data-action="click->dropdown#select">
+          <%= image_tag "icons/vi.png", alt: "lang_vi", class: "", size: (20) %>
+          <%= link_to "Vietnamese", locale: "vi" %>
+        </div>
+        <div class="py-1 px-3 flex gap-1 cursor-pointer hover:bg-sky-100" data-value="option2" data-action="click->dropdown#select">
+          <%= image_tag "icons/en.png", alt: "lang_en", class: "", size: (20) %>
+          <%= link_to "English", locale: "en" %>
+        </div>
+        <div class="py-1 px-3 flex gap-1 cursor-pointer hover:bg-sky-100" data-value="option2" data-action="click->dropdown#select">
+          <%= image_tag "icons/ja.png", alt: "lang_ja", class: "", size: (20) %>
+          <%= link_to "Japanese", locale: "ja" %>
+        </div>
+      </div>
+    </div>
+
+    <% if user_signed_in? %>
+      <%= button_to "Logout", logout_path, method: :delete %>
+    <% else %>
+      <%= link_to "Login", login_path %>
+      <%= link_to "Register", register_path %>
+    <% end %>
+  </div>
+</div>

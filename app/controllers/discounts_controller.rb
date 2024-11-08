@@ -1,5 +1,5 @@
 class DiscountsController < ApplicationController
-  before_action :set_discount, only: %i[ show edit update destroy ]
+  before_action :set_discount, only: %i(show edit update destroy)
 
   # GET /discounts or /discounts.json
   def index
@@ -7,8 +7,7 @@ class DiscountsController < ApplicationController
   end
 
   # GET /discounts/1 or /discounts/1.json
-  def show
-  end
+  def show; end
 
   # GET /discounts/new
   def new
@@ -16,15 +15,15 @@ class DiscountsController < ApplicationController
   end
 
   # GET /discounts/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /discounts or /discounts.json
   def create
     @discount = Discount.new(discount_params)
 
     if @discount.save
-      redirect_to discount_url(@discount), notice: "Discount was successfully created."
+      redirect_to discount_url(@discount),
+                  notice: "Discount was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +32,8 @@ class DiscountsController < ApplicationController
   # PATCH/PUT /discounts/1 or /discounts/1.json
   def update
     if @discount.update(discount_params)
-      redirect_to discount_url(@discount), notice: "Discount was successfully updated."
+      redirect_to discount_url(@discount),
+                  notice: "Discount was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -47,13 +47,14 @@ class DiscountsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_discount
-      @discount = Discount.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_discount
+    @discount = Discount.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def discount_params
-      params.require(:discount).permit(:product_id, :user_id, :discount_rate, :status, :start_time, :end_time)
-    end
+  # Only allow a list of trusted parameters through.
+  def discount_params
+    params.require(:discount).permit(:product_id, :user_id, :discount_rate,
+                                     :status, :start_time, :end_time)
+  end
 end

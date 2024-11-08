@@ -4,6 +4,16 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable, :trackable,
          :omniauthable, omniauth_providers: %i(facebook google_oauth2)
 
+  has_many :address, dependent: :destroy
+  has_many :orders, dependent: :destroy
+  has_many :discounts, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_one :cart, dependent: :destroy
+
+  validates :email, presence: true, uniqueness: true
+
+  enum :role, %i(admin user), default: :user, validate: true
+
   def admin?
     true
   end

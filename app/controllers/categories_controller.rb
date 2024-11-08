@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[ show edit update destroy ]
+  before_action :set_category, only: %i(show edit update destroy)
 
   # GET /categories or /categories.json
   def index
@@ -7,8 +7,7 @@ class CategoriesController < ApplicationController
   end
 
   # GET /categories/1 or /categories/1.json
-  def show
-  end
+  def show; end
 
   # GET /categories/new
   def new
@@ -16,15 +15,15 @@ class CategoriesController < ApplicationController
   end
 
   # GET /categories/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /categories or /categories.json
   def create
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to category_url(@category), notice: "Category was successfully created."
+      redirect_to category_url(@category),
+                  notice: "Category was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +32,8 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1 or /categories/1.json
   def update
     if @category.update(category_params)
-      redirect_to category_url(@category), notice: "Category was successfully updated."
+      redirect_to category_url(@category),
+                  notice: "Category was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -47,13 +47,13 @@ class CategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_category
-      @category = Category.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_category
+    @category = Category.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def category_params
-      params.require(:category).permit(:name, :show_products, :include_in_nav)
-    end
+  # Only allow a list of trusted parameters through.
+  def category_params
+    params.require(:category).permit(:name, :show_products, :include_in_nav)
+  end
 end

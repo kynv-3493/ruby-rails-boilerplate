@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :set_product, only: %i(show edit update destroy)
 
   # GET /products or /products.json
   def index
@@ -7,8 +7,7 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/1 or /products/1.json
-  def show
-  end
+  def show; end
 
   # GET /products/new
   def new
@@ -16,15 +15,15 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /products or /products.json
   def create
     @product = Product.new(product_params)
 
     if @product.save
-      redirect_to product_url(@product), notice: "Product was successfully created."
+      redirect_to product_url(@product),
+                  notice: "Product was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,9 +31,10 @@ class ProductsController < ApplicationController
 
   # PATCH/PUT /products/1 or /products/1.json
   def update
-    respond_to do |format|
+    respond_to do |_format|
       if @product.update(product_params)
-        redirect_to product_url(@product), notice: "Product was successfully updated."
+        redirect_to product_url(@product),
+                    notice: "Product was successfully updated."
       else
         render :edit, status: :unprocessable_entity
       end
@@ -49,13 +49,13 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product
+    @product = Product.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def product_params
-      params.require(:product).permit(:category_id, :name, :description, :price_cents, :weight_gams, :tax_rate, :currency, :delivery_quantity, :quantity_in_stock)
-    end
+  # Only allow a list of trusted parameters through.
+  def product_params
+    params.require(:product).permit(Product::PRODUCT_PARAMS)
+  end
 end

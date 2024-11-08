@@ -11,6 +11,5 @@ FactoryBot.define do
     discount_amount { 1 }
     final_invoice { 1 }
     final_invoice_incl_tax { 1 }
-    payment_status { 1 }
   end
 end

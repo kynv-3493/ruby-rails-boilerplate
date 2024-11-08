@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :set_review, only: %i[ show edit update destroy ]
+  before_action :set_review, only: %i(show edit update destroy)
 
   # GET /reviews
   def index
@@ -7,8 +7,7 @@ class ReviewsController < ApplicationController
   end
 
   # GET /reviews/1 o
-  def show
-  end
+  def show; end
 
   # GET /reviews/new
   def new
@@ -16,16 +15,16 @@ class ReviewsController < ApplicationController
   end
 
   # GET /reviews/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /reviews
   def create
     @review = Review.new(review_params)
 
-    respond_to do |format|
+    respond_to do |_format|
       if @review.save
-        redirect_to review_url(@review), notice: "Review was successfully created."
+        redirect_to review_url(@review),
+                    notice: "Review was successfully created."
       else
         render :new, status: :unprocessable_entity
       end
@@ -34,9 +33,10 @@ class ReviewsController < ApplicationController
 
   # PATCH/PUT /reviews/1 o
   def update
-    respond_to do |format|
+    respond_to do |_format|
       if @review.update(review_params)
-        redirect_to review_url(@review), notice: "Review was successfully updated."
+        redirect_to review_url(@review),
+                    notice: "Review was successfully updated."
       else
         render :edit, status: :unprocessable_entity
       end
@@ -47,19 +47,19 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
 
-    respond_to do |format|
+    respond_to do |_format|
       redirect_to reviews_url, notice: "Review was successfully destroyed."
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_review
-      @review = Review.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_review
+    @review = Review.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def review_params
-      params.require(:review).permit(:user_id, :rating, :comment, :image_url)
-    end
+  # Only allow a list of trusted parameters through.
+  def review_params
+    params.require(:review).permit(:user_id, :rating, :comment, :image_url)
+  end
 end

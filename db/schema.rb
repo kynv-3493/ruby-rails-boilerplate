@@ -50,6 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_08_142359) do
     t.boolean "include_in_nav"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_categories_on_name", unique: true
   end
 
   create_table "discounts", force: :cascade do |t|
@@ -95,7 +96,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_08_142359) do
     t.integer "discount_amount"
     t.integer "final_invoice"
     t.integer "final_invoice_incl_tax"
-    t.integer "payment_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["address_id"], name: "index_orders_on_address_id"
@@ -116,7 +116,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_08_142359) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_products_on_category_id"
-    t.index ["name"], name: "index_products_on_name"
+    t.index ["name"], name: "index_products_on_name", unique: true
     t.index ["price_cents"], name: "index_products_on_price_cents"
   end
 

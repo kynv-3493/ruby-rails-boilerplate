@@ -1,5 +1,7 @@
 module M
-  def self.table_name_prefix
-    "m_"
+  class << self
+    def table_name_prefix
+      "m_"
+    end
   end
 end

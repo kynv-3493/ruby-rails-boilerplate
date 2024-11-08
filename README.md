@@ -67,7 +67,7 @@ rails generate scaffold Address user:references address1:string address2:string 
 rails generate scaffold Category name:string show_products:boolean include_in_nav:boolean
 rails generate scaffold Product category:references name:string:index description:string price_cents:integer:index weight_gams:integer tax_rate:integer currency:string delivery_quantity:integer quantity_in_stock:integer
 rails generate scaffold M::PaymentMethod name:string
-rails generate scaffold Order user:references m_payment_method:references address:references status:integer return_reason:string currency:string total_invoice:integer tax_amount:integer discount_amount:integer final_invoice:integer final_invoice_incl_tax:integer payment_status:integer
+rails generate scaffold Order user:references m_payment_method:references address:references status:integer return_reason:string currency:string total_invoice:integer tax_amount:integer discount_amount:integer final_invoice:integer final_invoice_incl_tax:integer
 rails generate scaffold OrderItem order:references product:references quantity:integer total_amount:integer currency:string
 rails generate scaffold Cart user:references
 rails generate scaffold CartItem cart:references product:references quantity:integer

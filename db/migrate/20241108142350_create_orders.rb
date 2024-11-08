@@ -12,7 +12,6 @@ class CreateOrders < ActiveRecord::Migration[7.0]
       t.integer :discount_amount
       t.integer :final_invoice
       t.integer :final_invoice_incl_tax
-      t.integer :payment_status
 
       t.timestamps
     end

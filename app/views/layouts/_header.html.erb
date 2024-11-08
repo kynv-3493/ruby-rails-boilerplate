@@ -1,8 +1,6 @@
 <div id="header-left" class="flex items-center justify-between text-md mb-4">
   <div>
     <%= link_to t("dictionary.web_name"), root_path, class: "text-4xl font-bold" %>
-    <%= content_tag(:span, current_user&.name, class: "font-bold text-md") %>
-    <%= content_tag(:span, current_user&.admin.nil? ? "- Employee" : current_user.admin&.is_super ? "- Super Admin" : "- Admin", class: "font-bold text-md") %>
   </div>
   <div id="header-right" class="flex gap-2">
     <div>

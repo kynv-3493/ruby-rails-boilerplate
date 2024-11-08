@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+      - amazon
   pull_request:
     branches:
       - main
+      - amazon
 
 jobs:
   build_prepare:

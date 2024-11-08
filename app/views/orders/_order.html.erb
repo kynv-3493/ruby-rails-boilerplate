@@ -1,0 +1,56 @@
+<div id="<%= dom_id order %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">User:</strong>
+    <%= order.user_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">M payment method:</strong>
+    <%= order.m_payment_method_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Address:</strong>
+    <%= order.address_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Status:</strong>
+    <%= order.status %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Return reason:</strong>
+    <%= order.return_reason %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Currency:</strong>
+    <%= order.currency %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Total invoice:</strong>
+    <%= order.total_invoice %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Tax amount:</strong>
+    <%= order.tax_amount %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Discount amount:</strong>
+    <%= order.discount_amount %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Final invoice:</strong>
+    <%= order.final_invoice %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Final invoice incl tax:</strong>
+    <%= order.final_invoice_incl_tax %>
+  </p>
+</div>

@@ -16,5 +16,18 @@ Rails.application.routes.draw do
     authenticate :user, -> (user) {user.admin?} do
       mount Sidekiq::Web => "/sidekiq"
     end
+
+    resources :discounts
+    resources :cart_items
+    resources :carts
+    resources :order_items
+    resources :orders
+    namespace :m do
+      resources :payment_methods
+    end
+    resources :products
+    resources :categories
+    resources :addresses
+    resources :reviews
   end
 end
